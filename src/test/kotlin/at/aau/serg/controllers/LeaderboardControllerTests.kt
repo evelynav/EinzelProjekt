@@ -54,4 +54,20 @@ class LeaderboardControllerTests {
         assertEquals(third, res[2])
     }
 
+    @Test
+    fun test_getLeaderboard_sameScore_correctTimeSorting() {
+        val first = GameResult(1, "ABC", 20, 20.00)
+        val second = GameResult(2, "DEF", 20, 10.00)
+        val third = GameResult(3, "GHI", 20, 15.00)
+
+        whenever(mockedService.getGameResults()).thenReturn(listOf(first, second, third))
+
+        val res: List <GameResult> = controller.getLeaderboard()
+
+        verify(mockedService).getGameResults()
+        assertEquals(3, res.size)
+        assertEquals(second, res[0])
+        assertEquals(third, res[1])
+        assertEquals(first, res[2])
+    }
 }
