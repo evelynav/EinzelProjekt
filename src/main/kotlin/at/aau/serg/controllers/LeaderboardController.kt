@@ -14,6 +14,6 @@ class LeaderboardController(
 
     @GetMapping
     fun getLeaderboard(): List<GameResult> =
-        gameResultService.getGameResults().sortedWith(compareByDescending <GameResult> {it.score}.thenBy { it.timeInSeconds })
+        gameResultService.getGameResults().sortedWith(compareByDescending <GameResult> { it.score }.thenBy { it.timeInSeconds })
 
 }
